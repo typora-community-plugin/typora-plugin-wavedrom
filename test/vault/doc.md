@@ -1,4 +1,12 @@
-# Title
+# WaveDrom
 
-Lorem, ipsum dolor sit amet consectetur adipisicing elit.
-Adipisci nesciunt dolorem, blanditiis ea facilis, omnis dignissimos, eligendi architecto ducimus veniam necessitatibus illum assumenda id culpa officiis explicabo delectus sequi! Quas.
+```wavedrom
+{signal: [
+  {name: 'clk', wave: 'p.....|...'},
+  {name: 'dat', wave: 'x.345x|=.x', data: ['head', 'body', 'tail', 'data']},
+  {name: 'req', wave: '0.1..0|1.0'},
+  {},
+  {name: 'ack', wave: '1.....|01.'}
+]}
+```
+
