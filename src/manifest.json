@@ -1,7 +1,7 @@
 {
   "id": "typora-community-plugin.wavedrom",
   "name": "WaveDrom",
-  "description": "Example plugin for typora.",
+  "description": "Use WaveDrom in Typora",
   "author": "plylrnsdy",
   "authorUrl": "https://github.com/plylrnsdy",
   "repo": "typora-community-plugin/typora-plugin-wavedrom",

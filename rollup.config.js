@@ -2,6 +2,7 @@ import fs from 'node:fs/promises'
 import { defineConfig } from 'rollup'
 import { babel } from '@rollup/plugin-babel'
 import commonjs from '@rollup/plugin-commonjs'
+import json from '@rollup/plugin-json'
 import replace from '@rollup/plugin-replace'
 import { nodeResolve } from '@rollup/plugin-node-resolve'
 import scss from 'rollup-plugin-scss'
@@ -57,6 +58,7 @@ export default defineConfig({
       fileName: 'style.css',
       processor: (css, map) => ({ css: css.replace(/\n+\s*/g, '') }),
     }),
+    json(),
     terser(),
   ],
 })
