@@ -13,30 +13,32 @@ export default class extends Plugin {
     // @ts-ignore
     window.WaveSkin = WaveDrom.waveSkin
 
-    this.registerMarkdownPostProcessor(
-      CodeblockPostProcessor.from({
-        lang: ['wavedrom'],
-        preview: (code, pre) => {
-          const index = pre.getAttribute('data-wavedrom-i')
-            ?? (++this.index).toString()
+    this.register(
+      this.app.features.markdownEditor.postProcessor.register(
+        CodeblockPostProcessor.from({
+          lang: ['wavedrom'],
+          exportPreview: true,
+          preview: (code, pre) => {
+            const index = pre.getAttribute('data-wavedrom-i')
+              ?? (++this.index).toString()
 
-          pre.setAttribute('data-wavedrom-i', index)
+            pre.setAttribute('data-wavedrom-i', index)
 
-          let signal = { signal: [] }
-          try {
-            signal = new Function(`return ${code}`)()
-          } catch (error) {
-            return html`<div style="color: red;">${error}</div>`
+            let signal = { signal: [] }
+            try {
+              signal = new Function(`return ${code}`)()
+            } catch (error) {
+              return html`<div style="color: red;">${error}</div>`
+            }
+
+            setTimeout(() => {
+              $('.md-diagram-panel-preview', pre).attr('id', prefix + index)
+              WaveDrom.renderWaveForm(index, signal, prefix, false)
+            })
+
+            return '' as any
           }
-
-          setTimeout(() => {
-            $('.md-diagram-panel-preview', pre).attr('id', prefix + index)
-            WaveDrom.renderWaveForm(index, signal, prefix, false)
-          })
-
-          return '' as any
-        }
-      }))
+        })))
   }
 
   onunload() {
